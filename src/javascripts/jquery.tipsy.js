@@ -181,6 +181,11 @@
             } else {
               this.on(eventIn, enter).on(eventOut, leave);
             }
+            if (options.hideOnClick) {
+                this[binder](eventIn, enter)[binder]('click.tipsy', function () {
+                    get(this).hide();
+                });
+            }
         }
             
         
@@ -197,6 +202,7 @@
         fadeOutTime: 400, 
         fallback: '',
         gravity: 'n',
+        hideOnClick: false,
         html: false,
         live: false,
         offset: 0,
