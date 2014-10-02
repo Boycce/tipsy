@@ -181,10 +181,10 @@
             } else {
               this.on(eventIn, enter).on(eventOut, leave);
             }
-            if (options.hideOnClick) {
-                this[binder](eventIn, enter)[binder]('click.tipsy', function () {
-                    get(this).hide();
-                });
+            if (options.hideOnClick && options.live) {
+                $(this.context).on(eventIn, this.selector, enter).on('click', this.selector, leave);
+            } else if (options.hideOnClick) {
+              this.on(eventIn, enter).on('click', leave);
             }
         }
             
